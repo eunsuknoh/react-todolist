@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styles from "./App.module.css";
 
 function App() {
+  const [todo, setTodo] = useState("");
+  const [todoList, setTodoList] = useState([]);
+
+  function handleChange(e) {
+    setTodo(e.target.value);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (todo === "") {
+      return;
+    }
+    setTodoList((todoList) => [todo, ...todoList]);
+    setTodo("");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.main_box}>
+      <h3 className={styles.title}>To do list 💜</h3>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="today's todo"
+          value={todo}
+          onChange={handleChange}
+        />
+        <button>Add ᰔ</button>
+      </form>
+      <p></p>
+      <ul>
+        {todoList.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
