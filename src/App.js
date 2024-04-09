@@ -31,9 +31,7 @@ function App() {
       </form>
       <p></p>
       <ul>
-        {todoList.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
+        {todoList.map((item, index) => <li key={index}>{item}</li>).reverse()}
       </ul>
     </div>
   );
