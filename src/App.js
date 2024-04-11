@@ -31,7 +31,16 @@ function App() {
       </form>
       <p></p>
       <ul>
-        {todoList.map((item, index) => <li key={index}>{item}</li>).reverse()}
+        {todoList
+          .map((item, index) => {
+            return (
+              <div className={styles.todo_list}>
+                <li key={index}>{item}</li>
+                <button className={styles.delete_btn}>✕</button>
+              </div>
+            );
+          })
+          .reverse()}
       </ul>
     </div>
   );
