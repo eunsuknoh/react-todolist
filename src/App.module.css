@@ -19,6 +19,7 @@ input {
 }
 input::placeholder {
   color: black;
+  opacity: 0.5;
 }
 input:focus::placeholder {
   color: transparent;
