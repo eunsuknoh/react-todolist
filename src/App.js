@@ -16,12 +16,15 @@ function App() {
     setTodoList((todoList) => [todo, ...todoList]);
     setTodo("");
   }
+
   function handleDelete(e) {
-    const deleteBtn = e.timeStamp;
-    // console.dir(e.target.parentElement);
-    // console.log(e.target.parentElement.id);
-    // deleteBtn 클릭 시 해당 div 삭제하기 > div id 값이 없음. id 값으로 어떤 요소를 넣어야하는지 ?
-    // Date.now() 효과 없음, 같은 값만 출력됨..
+    const deleteTodo = e.target.parentNode.parentNode;
+    deleteTodo.remove();
+  }
+
+  function handleCheck(e) {
+    const chosenTodo = e.target.parentNode.parentNode.childNodes[0];
+    chosenTodo.style.textDecoration = "line-through";
   }
 
   return (
@@ -34,7 +37,7 @@ function App() {
           value={todo}
           onChange={handleChange}
         />
-        <button>Add ᰔ</button>
+        <button>Add</button>
       </form>
       <p></p>
       <ul>
@@ -43,9 +46,14 @@ function App() {
             return (
               <div className={styles.todo_list}>
                 <li key={index}>{item}</li>
-                <button onClick={handleDelete} className={styles.delete_btn}>
-                  ✕
-                </button>
+                <div>
+                  <button onClick={handleCheck} className={styles.check_btn}>
+                    V
+                  </button>
+                  <button onClick={handleDelete} className={styles.delete_btn}>
+                    ✕
+                  </button>
+                </div>
               </div>
             );
           })
