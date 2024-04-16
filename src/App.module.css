@@ -47,17 +47,18 @@ li {
 .todo_list {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .delete_btn {
   all: unset;
-  font-size: 13px;
+  font-size: 20px;
   margin-right: 30px;
   cursor: pointer;
   transition: all 0.2s linear;
 }
 .delete_btn:hover {
-  color: violet;
+  color: white;
   background-color: transparent;
 }
 
@@ -65,10 +66,15 @@ li {
   all: unset;
   margin-right: 5px;
   cursor: pointer;
-  font-size: 12px;
-  color: violet;
+  font-size: 20px;
 }
 .check_btn:hover {
   background-color: transparent;
   color: white;
+}
+.date {
+  display: inline-block;
+  font-family: Pixelify Sans;
+  color: white;
+  text-indent: 8px;
 }

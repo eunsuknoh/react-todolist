@@ -22,10 +22,23 @@ function App() {
     deleteTodo.remove();
   }
 
-  function handleCheck(e) {
+  const [done, setDone] = useState(false);
+  function handleDone(e) {
     const chosenTodo = e.target.parentNode.parentNode.childNodes[0];
-    chosenTodo.style.textDecoration = "line-through";
+    if (done === false) {
+      chosenTodo.style.textDecoration = "line-through";
+      setDone(true);
+    } else {
+      chosenTodo.style.textDecoration = "none";
+      setDone(false);
+    }
   }
+  const current = new Date();
+  const currentFullYear = current.getFullYear().toString();
+  const Year = currentFullYear.slice(2, 4);
+  const currentTime2 = current.getMonth();
+  const Month = currentTime2 + 1;
+  const Day = current.getDate();
 
   return (
     <div className={styles.main_box}>
@@ -40,18 +53,25 @@ function App() {
         <button>Add</button>
       </form>
       <p></p>
+      <span className={styles.date}>
+        ・ {Year} / {Month} / {Day}
+      </span>
       <ul>
         {todoList
           .map((item, index) => {
             return (
-              <div className={styles.todo_list}>
-                <li key={index}>{item}</li>
+              <div className={styles.todo_list} key={index}>
+                <li>{item}</li>
                 <div>
-                  <button onClick={handleCheck} className={styles.check_btn}>
-                    V
+                  <button
+                    value={done}
+                    onClick={handleDone}
+                    className={styles.check_btn}
+                  >
+                    ☑︎
                   </button>
                   <button onClick={handleDelete} className={styles.delete_btn}>
-                    ✕
+                    ☒
                   </button>
                 </div>
               </div>
