@@ -10,3 +10,10 @@ body {
   font-family: Cambay;
   font-size: 14px;
 }
+
+img {
+  position: fixed;
+  left: 535px;
+  bottom: 325px;
+  width: 40px;
+}
