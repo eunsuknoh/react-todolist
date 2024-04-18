@@ -13,7 +13,7 @@ function App() {
     if (todo === "") {
       return;
     }
-    setTodoList((todoList) => [todo, ...todoList]);
+    setTodoList((todoList) => [...todoList, todo]);
     setTodo("");
   }
 
@@ -25,6 +25,9 @@ function App() {
   const [done, setDone] = useState(false);
   function handleDone(e) {
     const chosenTodo = e.target.parentNode.parentNode.childNodes[0];
+    // const selected = e.target.parentNode.parentNode;
+    // selected.value = "done";
+    // console.log(e.target.parentNode.parentNode);
     if (done === false) {
       chosenTodo.style.textDecoration = "line-through";
       setDone(true);
@@ -36,8 +39,8 @@ function App() {
   const current = new Date();
   const currentFullYear = current.getFullYear().toString();
   const Year = currentFullYear.slice(2, 4);
-  const currentTime2 = current.getMonth();
-  const Month = currentTime2 + 1;
+  const currentMonth = current.getMonth();
+  const Month = currentMonth + 1;
   const Day = current.getDate();
 
   return (
@@ -57,27 +60,25 @@ function App() {
         ・ {Year} / {Month} / {Day}
       </span>
       <ul>
-        {todoList
-          .map((item, index) => {
-            return (
-              <div className={styles.todo_list} key={index}>
-                <li>{item}</li>
-                <div>
-                  <button
-                    value={done}
-                    onClick={handleDone}
-                    className={styles.check_btn}
-                  >
-                    ☑︎
-                  </button>
-                  <button onClick={handleDelete} className={styles.delete_btn}>
-                    ☒
-                  </button>
-                </div>
+        {todoList.map((item, index) => {
+          return (
+            <div className={styles.todo_list} key={index}>
+              <li>{item}</li>
+              <div>
+                <button
+                  value={done}
+                  onClick={handleDone}
+                  className={styles.check_btn}
+                >
+                  ☑︎
+                </button>
+                <button onClick={handleDelete} className={styles.delete_btn}>
+                  ☒
+                </button>
               </div>
-            );
-          })
-          .reverse()}
+            </div>
+          );
+        })}
       </ul>
     </div>
   );
