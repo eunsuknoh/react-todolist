@@ -25,9 +25,7 @@ function App() {
   const [done, setDone] = useState(false);
   function handleDone(e) {
     const chosenTodo = e.target.parentNode.parentNode.childNodes[0];
-    // const selected = e.target.parentNode.parentNode;
-    // selected.value = "done";
-    // console.log(e.target.parentNode.parentNode);
+
     if (done === false) {
       chosenTodo.style.textDecoration = "line-through";
       setDone(true);
